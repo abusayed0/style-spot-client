@@ -22,7 +22,7 @@ const Navbar = () => {
 
                     </ul>
                 </div>
-                <h3 className="text-4xl font-bold ">Style Spot</h3>
+                <h3 className="text-3xl md:text-4xl font-bold ">Style Spot</h3>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="flex gap-6">
