@@ -14,6 +14,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/",
+                loader: () => fetch("https://style-spot-server.vercel.app/"),
                 element: <Home/>
             },
             {
