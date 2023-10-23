@@ -23,7 +23,7 @@ const Home = () => {
                 </div>
             </div>
             {/* contact start  */}
-            <div className="mt-20 bg-[#f5f8e8] flex gap-8 flex-col md:flex-row items-center p-5 ">
+            <div className="mt-20 bg-[#f5f8e8]  flex gap-8 flex-col md:flex-row items-center p-5 ">
                 <div className="w-full md:w-1/2">
                     <div className="max-w-[400px] mx-auto">
                         <h2 className="text-3xl md:text-4xl font-medium">We are Here to Listen</h2>
@@ -31,12 +31,12 @@ const Home = () => {
                         </p>
                     </div>
                 </div>
-                <div className="w-full md:w-1/2 bg-[#F5FCCD] p-7">
+                <div className="w-full md:w-1/2 bg-white p-7">
                     <h3 className="text-2xl md:text-3xl font-bold">Contact Us</h3>
                     <div className="mt-5 flex flex-col gap-3 items-start">
-                        <input type="text" name="name" id="name" className="w-full p-3" placeholder="Name" />
-                        <input type="email" name="email" id="email" className="w-full p-3" placeholder="Email" />
-                        <textarea name="meassage" id="meassage" rows="5" placeholder="Meassage" className="p-3 w-full resize-none"></textarea>
+                        <input type="text" name="name" id="name" className="bg-[#f5f8e8] w-full p-3" placeholder="Name" />
+                        <input type="email" name="email" id="email" className="bg-[#f5f8e8] w-full p-3" placeholder="Email" />
+                        <textarea name="meassage" id="meassage" rows="5" placeholder="Meassage" className="bg-[#f5f8e8] p-3 w-full resize-none"></textarea>
                         <button className="rounded text-xl font-semibold text-white px-5 py-2 bg-[#9A3B3B]" type="submit">Send</button>
                     </div>
                 </div>

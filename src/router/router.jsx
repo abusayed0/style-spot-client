@@ -5,6 +5,7 @@ import AddProduct from "../pages/add-product/AddProduct";
 import MyCart from "../pages/my-cart/MyCart";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
+import BrandProducts from "../pages/brand-products/BrandProducts";
 
 
 const router = createBrowserRouter([
@@ -16,6 +17,11 @@ const router = createBrowserRouter([
                 path: "/",
                 loader: () => fetch("https://style-spot-server.vercel.app/"),
                 element: <Home/>
+            },
+            {
+                path: "/:brand",
+                loader: ({params}) => fetch(`https://style-spot-server.vercel.app/${params.brand}`),
+                element: <BrandProducts/>
             },
             {
                 path: "/add-product",
