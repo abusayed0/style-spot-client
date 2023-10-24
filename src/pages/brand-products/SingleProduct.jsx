@@ -20,8 +20,8 @@ const SingleProduct = ({ productData }) => {
                     <h5 className="text-2xl">Price : {price} $</h5>
                 </div>
                 <div className="mt-3 flex justify-center gap-4">
-                    <button  className="text-xl font-semibold text-white bg-[#9A3B3B] px-2 py-1">Update</button>
-                    <button onClick={() => navigate(`/${brand}/${_id}`)} className="text-xl font-semibold text-white bg-[#9A3B3B] px-2 py-1">Details</button>
+                    <button  className="text-xl font-medium text-white bg-[#9A3B3B] px-2 py-1">Update</button>
+                    <button onClick={() => navigate(`/${brand}/${_id}`)} className="text-xl font-medium text-white bg-[#9A3B3B] px-2 py-1">Details</button>
                 </div>
             </div>
         </div>
