@@ -44,7 +44,7 @@ const Home = () => {
             {/* frequently asked question start  */}
             <div className="mt-20 flex flex-col gap-4">
                 <div className="collapse collapse-arrow bg-[#f5f8e8]">
-                    <input type="radio" name="my-accordion-2" checked="checked" />
+                    <input type="radio" name="my-accordion-2"/>
                     <div className="collapse-title text-xl font-medium">
                         How can I place an order on Style Spot?
                     </div>
