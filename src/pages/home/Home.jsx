@@ -37,7 +37,7 @@ const Home = () => {
                         <input type="text" name="name" id="name" className=" w-full p-3" placeholder="Name" />
                         <input type="email" name="email" id="email" className="w-full p-3" placeholder="Email" />
                         <textarea name="meassage" id="meassage" rows="5" placeholder="Meassage" className="p-3 w-full resize-none"></textarea>
-                        <button className="rounded text-xl font-semibold text-white px-5 py-2 bg-[#9A3B3B]" type="submit">Send</button>
+                        <button className="text-xl font-semibold text-white px-5 py-2 bg-[#9A3B3B]" type="submit">Send</button>
                     </div>
                 </div>
             </div>

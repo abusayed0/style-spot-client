@@ -1,8 +1,23 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import "./navbar.css"
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProviders";
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
+    console.log(user);
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+                console.log("log out successfull");
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                console.error(errorMessage);
+            })
+    }
     const navigate = useNavigate();
+
     return (
         <div className="navbar p-0 min-h-[auto] bg-[#E2C799] py-3">
             <div className="navbar-start gap-1 lg:gap-0">
@@ -40,7 +55,23 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <button onClick={() => navigate("/login")} className="text-xl font-bold text-white py-1 px-2 md:px-3 md:py-2 bg-[#9A3B3B]">Login</button>
+                {
+                    user ?
+                        <div className="flex items-center gap-2">
+                            <div className="dropdown dropdown-end">
+                                <label tabIndex={0}>
+                                    <img className="w-8 md:w-10 h-8 md:h-10 rounded-full cursor-pointer" src={user.photoURL} />
+                                </label>
+                                <ul tabIndex={0} className="mt-6 z-[1] p-2 shadow  dropdown-content bg-[#E2C799] rounded-box w-52 break-all">
+                                    <li>Name : {user.displayName}</li>
+                                    <li className="mt-1">Email : {user.email}</li>
+                                </ul>
+                            </div>
+                            <button onClick={handleLogOut} className="text-xl font-semibold text-white py-1 px-2 md:px-3 md:py-2 bg-[#9A3B3B]">Log Out</button>
+                        </div>
+                        :
+                        <button onClick={() => navigate("/login")} className="text-xl font-semibold text-white py-1 px-2 md:px-3 md:py-2 bg-[#9A3B3B]">Log In</button>
+                }
             </div>
         </div>
     );
