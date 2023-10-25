@@ -1,7 +1,8 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./navbar.css"
 
 const Navbar = () => {
+    const navigate = useNavigate();
     return (
         <div className="navbar p-0 min-h-[auto] bg-[#E2C799] py-3">
             <div className="navbar-start gap-1 lg:gap-0">
@@ -39,7 +40,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <button className="text-xl font-bold text-white py-1 px-2 md:px-3 md:py-2 bg-[#9A3B3B]">Login</button>
+                <button onClick={() => navigate("/login")} className="text-xl font-bold text-white py-1 px-2 md:px-3 md:py-2 bg-[#9A3B3B]">Login</button>
             </div>
         </div>
     );
