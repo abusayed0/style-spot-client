@@ -20,11 +20,16 @@ const AddProduct = () => {
             body: JSON.stringify(productData)
         })
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data);
+            if(data.insertedId){
+                form.reset();
+            }
+        })
     };
     return (
         <div className="mt-20 w-4/5 mx-auto">
-            <h2 className="text-3xl font-semibold text-center">Please add your product</h2>
+            <h2 className="text-3xl font-semibold text-center">Please add a new product</h2>
             <form onSubmit={handleAddProduct} className="mt-6 flex flex-col items-center gap-5">
                 <div className="w-full flex flex-col md:flex-row gap-5">
                     <div className="w-full md:w-1/2"> 

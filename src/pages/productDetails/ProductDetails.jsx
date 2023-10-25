@@ -4,6 +4,11 @@ import { useLoaderData } from "react-router-dom";
 const ProductDetails = () => {
     const detailsData = useLoaderData();
     const { _id, image, name, brand, type, price, rating, specialties} = detailsData;
+    
+    const handleAddToCart = () => {
+        console.log("clicked");
+
+    };
 
     console.log(detailsData);
     return (
@@ -23,7 +28,7 @@ const ProductDetails = () => {
                 <div className="mt-6 ">
                     <h3 className="text-2xl font-semibold">Qualities</h3>
                     {
-                        specialties.length ?
+                        specialties?
 
                             <ul className="mt-2 flex flex-col gap-1 ps-4">
                                 {
@@ -38,7 +43,7 @@ const ProductDetails = () => {
                             <p className="mt-2 ps-4 text-xl">Not available</p>
                     }
                 </div>
-                <button className="mt-5 px-4 py-2 font-medium text-white bg-[#9A3B3B]">Add To Cart</button>
+                <button onClick={handleAddToCart} className="mt-5 px-4 py-2 font-medium text-white bg-[#9A3B3B]">Add To Cart</button>
             </div>
         </div>
     );
