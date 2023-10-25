@@ -1,4 +1,4 @@
-# Style Spot - [live website](https://zingy-salamander-c3d89e.netlify.app/)
+# Style Spot - [live website](https://style-spot-8556.netlify.app/)
 
 ## Features and functionalities
 * Have google and email password authentication system.
