@@ -1,12 +1,39 @@
+import { useContext } from "react";
 import { AiFillCheckCircle } from "react-icons/ai";
 import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProviders";
+import toast from "react-hot-toast";
 
 const ProductDetails = () => {
+    const {user} = useContext(AuthContext);
     const detailsData = useLoaderData();
-    const { _id, image, name, brand, type, price, rating, specialties} = detailsData;
+    const { _id, image, name, brand, type, price, rating, short_description, specialties} = detailsData;
     
     const handleAddToCart = () => {
-        console.log("clicked");
+        const cartInfo = {
+            orderedBy: user.email,
+            image: detailsData.image,
+            name: detailsData.name,
+            brand: detailsData.brand,
+            type: detailsData.type,
+            price: detailsData.price,
+            rating: detailsData.rating
+        };
+       
+        fetch("https://b8a10-brandshop-server-side-abusayed0.vercel.app/carts", {
+            method: "POST",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(cartInfo)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            if(data.insertedId){
+                toast.success("Added to cart!")
+            }
+        })
 
     };
 
@@ -19,7 +46,8 @@ const ProductDetails = () => {
             </div>
             <div className="w-full md:w-1/2">
                 <div className="flex flex-col gap-2 ">
-                    <h2 className="text-3xl font-semibold">Name : {name}</h2>
+                    <h2 className="text-3xl font-semibold">{name}</h2>
+                    <p className="text-xl">{short_description}</p>
                     <h5 className="text-xl font-medium">Brand : {brand}</h5>
                     <p className="text-xl">Type : {type}</p>
                     <h4 className="text-2xl">Price : {price} $</h4>
@@ -33,7 +61,7 @@ const ProductDetails = () => {
                             <ul className="mt-2 flex flex-col gap-1 ps-4">
                                 {
                                     specialties.map((speciality, index) => <li key={index} className="flex gap-1 items-center">
-                                        <AiFillCheckCircle className="text-2xl" />
+                                        <AiFillCheckCircle className="text-2xl flex-shrink-0" />
                                         <span className="text-xl">{speciality}</span>
                                     </li>
                                     )

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
 const SingleProduct = ({ productData }) => {
-    // console.log(productData);
+    console.log(productData);
     const {_id, image, name, brand, type, price, rating } = productData;
     const navigate = useNavigate();
     return (

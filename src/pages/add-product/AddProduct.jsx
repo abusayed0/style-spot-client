@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 
 const AddProduct = () => {
     const handleAddProduct = e => {
@@ -10,9 +11,11 @@ const AddProduct = () => {
         const price = form.price.value;
         const rating = form.rating.value;
         const description = form.description.value;
-        const productData = {name: name, brand: brand.toLowerCase().trim(), type : type, price: price, short_description: description, rating: rating, image: image};
+        const qualities = form.qualities.value;
+
+        const productData = {image: image, name: name, brand: brand.toLowerCase().trim(), type : type, price: price, short_description: description, rating: rating, specialties: qualities.split(".")};
         console.log(productData);
-        fetch("http://localhost:5000/product", {
+        fetch("https://b8a10-brandshop-server-side-abusayed0.vercel.app/product", {
             method: "POST",
             headers:{
                 "Content-Type": "application/json"
@@ -23,6 +26,7 @@ const AddProduct = () => {
         .then(data => {
             console.log(data);
             if(data.insertedId){
+                toast.success("Product added successfully!")
                 form.reset();
             }
         })
@@ -34,36 +38,41 @@ const AddProduct = () => {
                 <div className="w-full flex flex-col md:flex-row gap-5">
                     <div className="w-full md:w-1/2"> 
                         <label htmlFor="image" className="text-xl">Enter image url <span className="text-red-600">*</span></label>
-                        <input id="image" type="text" name="image" className="mt-1 w-full p-2 border" placeholder="Image url" required />
+                        <input id="image" type="text" name="image" className="mt-2 w-full p-2 border" placeholder="Image url" required />
                     </div>
                     <div className="w-full md:w-1/2">
                         <label htmlFor="name" className="text-xl">Enter product name <span className="text-red-600">*</span></label>
-                        <input id="name" type="text" name="name" className="mt-1 w-full p-2 border" placeholder="Product name" required />
+                        <input id="name" type="text" name="name" className="mt-2 w-full p-2 border" placeholder="Product name" required />
                     </div>
                 </div>
                 <div className="w-full flex flex-col md:flex-row gap-5">
                     <div className="w-full md:w-1/2">
                         <label htmlFor="type" className="text-xl">Enter product type <span className="text-red-600">*</span></label>
-                        <input id="type" type="text" name="type" className="mt-1 w-full p-2 border" placeholder="Product type" required />
+                        <input id="type" type="text" name="type" className="mt-2 w-full p-2 border" placeholder="Product type" required />
                     </div>
                     <div className="w-full md:w-1/2">
                         <label htmlFor="brand" className="text-xl">Enter brand name <span className="text-red-600">*</span></label>
-                        <input id="brand" type="text" name="brand" className="mt-1 w-full p-2 border" placeholder="Brand name" required />
+                        <input id="brand" type="text" name="brand" className="mt-2 w-full p-2 border" placeholder="Brand name" required />
                     </div>
                 </div>
                 <div className="w-full flex flex-col md:flex-row gap-5">
                     <div className="w-full md:w-1/2">
                         <label htmlFor="price" className="text-xl">Enter price <span className="text-red-600">*</span></label>
-                        <input id="price" type="text" name="price" className="mt-1 w-full p-2 border" placeholder="Price" required />
+                        <input id="price" type="text" name="price" className="mt-2 w-full p-2 border" placeholder="Price" required />
                     </div>
                     <div className="w-full md:w-1/2">
                         <label htmlFor="rating" className="text-xl">Enter rating <span className="text-red-600">*</span></label>
-                        <input id="rating" type="text" name="rating" className="mt-1 w-full p-2 border" placeholder="Rating" required />
+                        <input id="rating" type="text" name="rating" className="mt-2 w-full p-2 border" placeholder="Rating" required />
                     </div>
                 </div>
                 <div className="w-full">
                     <label htmlFor="description" className="text-xl">Enter description <span className="text-red-600">*</span></label>
-                    <input id="description" type="text" name="description" className="mt-1 w-full p-2 border" placeholder="Description" required />
+                    <input id="description" type="text" name="description" className="mt-2 w-full p-2 border" placeholder="Description" required />
+                </div>
+                <div className="w-full">
+                    <label htmlFor="qualities" className="text-xl">Enter qualities <span className="text-red-600">*</span></label>
+                    <p className="mt-1">Please separate every quality using fullstop(.)</p>
+                    <textarea className="mt-2 w-full p-2 border" name="qualities" id="qualities" rows="5" placeholder="Qualities" required ></textarea>
                 </div>
                 <button type="submit" className="px-4 py-2 text-xl font-medium text-white bg-[#9A3B3B]">Add Now</button>
             </form>

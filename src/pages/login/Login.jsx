@@ -1,20 +1,27 @@
 import { AiFillGoogleCircle } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import { useContext } from "react";
+import toast from "react-hot-toast";
 
 const Login = () => {
+    const location = useLocation();
+    const from = location.state?.from || "/";
+    const navigate = useNavigate();
     const { emailPassLogin, googleLogIn } = useContext(AuthContext);
     const handleGoogleLogin = () => {
         googleLogIn()
           .then(success => {
             const currentUser = success.user;
             console.log(currentUser);
+            toast.success("Login successfull!")
+            navigate(from, {replace: true});
            
           })
           .catch(error => {
             const errorMessage = error.message;
             console.error(errorMessage);
+            toast.error(errorMessage);
           })
       };
     
@@ -32,11 +39,14 @@ const Login = () => {
           .then(success => {
             const currentUser = success.user;
             console.log(currentUser);
+            toast.success("Login successfull!")
+            navigate(from, {replace: true});
     
           })
           .catch(error => {
             const errorMessage = error.message;
             console.error(errorMessage);
+            toast.error(errorMessage);
           })
     
       };

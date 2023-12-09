@@ -1,14 +1,17 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
+import toast from "react-hot-toast";
 
 const Register = () => {
     const { createUser, update } = useContext(AuthContext);
+    const navigate = useNavigate();
     const handleUpdateProfile = (data) => {
         update(data)
             .then(() => {
                 console.log("profileUpdate");
-                
+                toast.success("Account created successfully!")
+                navigate("/", {replace: true});
             })
             .catch(error => {
                 const errorMessage = error.message;
@@ -30,6 +33,7 @@ const Register = () => {
         const condition = /^(?=.*[A-Z])(?=.*[!@#$&*]).{6,}$/;
         if (!condition.test(password)) {
             console.error("Password must be atleast 6 character and contain uppercase and special character.")
+            toast.error("Password must be atleast 6 character and contain uppercase and special character.")
             return;
         }
         // create user 
@@ -47,6 +51,7 @@ const Register = () => {
             .catch(error => {
                 const errorMesssage = error.message;
                 console.error(errorMesssage);
+                toast.error(errorMesssage);
               
 
             })

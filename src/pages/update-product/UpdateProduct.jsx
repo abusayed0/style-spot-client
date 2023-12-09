@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
 
 const UpdateProduct = () => {
@@ -13,10 +14,10 @@ const UpdateProduct = () => {
         const brand = form.brand.value;
         const price = form.price.value;
         const rating = form.rating.value;
-        const productData = {name: name, brand: brand.toLowerCase().trim(), type : type, price: price, rating: rating, image: image};
+        const productData = {image: image, name: name, brand: brand.toLowerCase().trim(), type : type, price: price, rating: rating};
         console.log(productData);
-        fetch("http://localhost:5000/product", {
-            method: "POST",
+        fetch(`https://b8a10-brandshop-server-side-abusayed0.vercel.app/update/${_id}`, {
+            method: "PATCH",
             headers:{
                 "Content-Type": "application/json"
             },
@@ -25,8 +26,8 @@ const UpdateProduct = () => {
         .then(res => res.json())
         .then(data => {
             console.log(data);
-            if(data.insertedId){
-                form.reset();
+            if(data.modifiedCount){
+                toast.success("Product updated successfully!")
             }
         })
     };
@@ -37,31 +38,31 @@ const UpdateProduct = () => {
             <div className="w-full flex flex-col md:flex-row gap-5">
                 <div className="w-full md:w-1/2"> 
                     <label htmlFor="image" className="text-xl">Enter image url <span className="text-red-600">*</span></label>
-                    <input defaultValue={image} id="image" type="text" name="image" className="mt-1 w-full p-2 border" placeholder="Image url" required />
+                    <input defaultValue={image} id="image" type="text" name="image" className="mt-2 w-full p-2 border" placeholder="Image url" required />
                 </div>
                 <div className="w-full md:w-1/2">
                     <label htmlFor="name" className="text-xl">Enter product name <span className="text-red-600">*</span></label>
-                    <input defaultValue={name} id="name" type="text" name="name" className="mt-1 w-full p-2 border" placeholder="Product name" required />
+                    <input defaultValue={name} id="name" type="text" name="name" className="mt-2 w-full p-2 border" placeholder="Product name" required />
                 </div>
             </div>
             <div className="w-full flex flex-col md:flex-row gap-5">
                 <div className="w-full md:w-1/2">
                     <label htmlFor="type" className="text-xl">Enter product type <span className="text-red-600">*</span></label>
-                    <input defaultValue={type} id="type" type="text" name="type" className="mt-1 w-full p-2 border" placeholder="Product type" required />
+                    <input defaultValue={type} id="type" type="text" name="type" className="mt-2 w-full p-2 border" placeholder="Product type" required />
                 </div>
                 <div className="w-full md:w-1/2">
                     <label htmlFor="brand" className="text-xl">Enter brand name <span className="text-red-600">*</span></label>
-                    <input defaultValue={brand} id="brand" type="text" name="brand" className="mt-1 w-full p-2 border" placeholder="Brand name" required />
+                    <input defaultValue={brand} id="brand" type="text" name="brand" className="mt-2 w-full p-2 border" placeholder="Brand name" required />
                 </div>
             </div>
             <div className="w-full flex flex-col md:flex-row gap-5">
                 <div className="w-full md:w-1/2">
                     <label htmlFor="price" className="text-xl">Enter price <span className="text-red-600">*</span></label>
-                    <input defaultValue={price} id="price" type="text" name="price" className="mt-1 w-full p-2 border" placeholder="Price" required />
+                    <input defaultValue={price} id="price" type="text" name="price" className="mt-2 w-full p-2 border" placeholder="Price" required />
                 </div>
                 <div className="w-full md:w-1/2">
                     <label htmlFor="rating" className="text-xl">Enter rating <span className="text-red-600">*</span></label>
-                    <input defaultValue={rating} id="rating" type="text" name="rating" className="mt-1 w-full p-2 border" placeholder="Rating" required />
+                    <input defaultValue={rating} id="rating" type="text" name="rating" className="mt-2 w-full p-2 border" placeholder="Rating" required />
                 </div>
             </div>
             <button type="submit" className="px-4 py-2 text-xl font-medium text-white bg-[#9A3B3B]">Update Now</button>

@@ -8,40 +8,43 @@ import Register from "../pages/register/Register";
 import BrandProducts from "../pages/brand-products/BrandProducts";
 import ProductDetails from "../pages/productDetails/ProductDetails";
 import UpdateProduct from "../pages/update-product/UpdateProduct";
+import AuthRequired from "../auth-required/AuthRequired";
+import NotFound from "../pages/not-found/NotFound";
 
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout/>,
+        errorElement: <NotFound/>,
         children: [
             {
                 path: "/",
-                loader: () => fetch("https://style-spot-server.vercel.app/"),
+                loader: () => fetch("https://b8a10-brandshop-server-side-abusayed0.vercel.app/"),
                 element: <Home/>
             },
             {
                 path: "/:brand",
-                loader: ({params}) => fetch(`https://style-spot-server.vercel.app/${params.brand}`),
+                loader: ({params}) => fetch(`https://b8a10-brandshop-server-side-abusayed0.vercel.app/${params.brand}`),
                 element: <BrandProducts/>
             },
             {
                 path: "/details/:id",
-                loader: ({params}) => fetch(`https://style-spot-server.vercel.app/details/${params.id}`),
-                element: <ProductDetails/>
+                loader: ({params}) => fetch(`https://b8a10-brandshop-server-side-abusayed0.vercel.app/details/${params.id}`),
+                element: <AuthRequired><ProductDetails/></AuthRequired>
             },
             {
                 path: "/update/:id",
-                loader: ({params}) => fetch(`https://style-spot-server.vercel.app/update/${params.id}`),
-                element: <UpdateProduct/>
+                loader: ({params}) => fetch(`https://b8a10-brandshop-server-side-abusayed0.vercel.app/update/${params.id}`),
+                element: <AuthRequired><UpdateProduct/></AuthRequired>
             },
             {
                 path: "/add-product",
-                element: <AddProduct/>
+                element: <AuthRequired><AddProduct/></AuthRequired>
             },
             {
                 path: "/my-cart",
-                element: <MyCart/>
+                element: <AuthRequired><MyCart/></AuthRequired>
             },
             {
                 path: "/login",
